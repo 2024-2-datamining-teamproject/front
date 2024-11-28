@@ -1,0 +1,45 @@
+.search-results-page {
+  padding: 20px;
+}
+
+.search-results-page h2 {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.movie-card {
+  width: auto;
+  height: auto;
+  background-color: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.movie-card img {
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 1px solid #333;
+}
+
+
+.main-page {
+  padding: 20px;
+  background-color: #141414;
+}
+
+.main-page h2 {
+  margin-bottom: 15px;
+  color: #fff;
+}
