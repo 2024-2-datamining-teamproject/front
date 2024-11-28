@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MovieSection from '../components/MovieSection';
 import Header from '../components/Header';
 import './Styles.css'

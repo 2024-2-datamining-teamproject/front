@@ -1,6 +1,7 @@
 import './App.css';
 import MainPage from './pages/MainPage';
 import SearchResultsPage from './pages/SearchResultsPage';
+import LoginPage from './pages/LoginPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/search" element={<SearchResultsPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </Router>
