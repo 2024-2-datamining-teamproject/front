@@ -19,9 +19,9 @@ const MainPage = ({ is_default }) => {
         </>
         :
         <>
-        <MovieSection title="내가 좋아하는 영화와 비슷해요" movies={recommendations.similar_movies} />
-        <MovieSection title="내가 좋아하는 감독의 다른 영화" movies={recommendations.director_movies} />
-        <MovieSection title="이런 날씨에 어떄요?" movies={recommendations.weather_movies} />
+          <MovieSection title="내가 좋아하는 영화와 비슷해요" movies={recommendations.similar_movies} />
+          <MovieSection title="내가 좋아하는 감독의 다른 영화" movies={recommendations.director_movies} />
+          <MovieSection title="이런 날씨에 어떄요?" movies={recommendations.weather_movies} />
         </>
       )}
     </div>
