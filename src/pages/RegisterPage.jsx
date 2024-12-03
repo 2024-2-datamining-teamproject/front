@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { registerUser } from "../api";
 
-const RegisterPage = () => {
+const RegisterPage = ({ set_login }) => {
   const [favoriteMovie, setFavoriteMovie] = useState("");
   const [favoriteDirector, setFavoriteDirector] = useState("");
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ const RegisterPage = () => {
   const handleRegister = async () => {
     if (favoriteMovie.trim() && favoriteDirector.trim()) {
       const response = await registerUser(userId, favoriteMovie, favoriteDirector);
+      set_login(true);
       navigate("/", { state: { recommendations: response } });
     } else {
       alert("모든 필드를 입력해주세요!");

@@ -3,13 +3,17 @@ import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import './Styles.css';
 
-const Header = ({ onSearch }) => {
+const Header = ({ set_login }) => {
+
+  const onLogoClick = () => {
+    set_login(false);
+  };
   return (
     <header className="header">
-      <Link to="/" className="logo">
+      <Link to="/login" className="logo" onClick={onLogoClick}>
         AJOUFLIX
       </Link>
-      <SearchBar onSearch={onSearch} />
+      <SearchBar />
     </header>
   );
 };

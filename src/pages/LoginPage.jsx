@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
 
-const LoginPage = ({ set_default }) => {
+const LoginPage = ({ set_default, set_login }) => {
   const [id, setId] = useState("");
   const navigate = useNavigate();
 
@@ -11,6 +11,7 @@ const LoginPage = ({ set_default }) => {
       const response = await loginUser(id);
       if (response.existing_user) {
         set_default(true);
+        set_login(true);
         navigate("/", { state: { recommendations: response } });
       } else {
         set_default(false);

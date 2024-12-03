@@ -1,16 +1,22 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import MovieSection from "../components/MovieSection";
 import Header from "../components/Header";
 import "./Styles.css";
 
-const MainPage = ({ is_default }) => {
+const MainPage = ({ is_default, is_login, set_login }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const recommendations = location.state?.recommendations;
+  useEffect(() => {
+    if (!is_login) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <div className="main-page">
-      <Header />
+      <Header set_login={set_login}/>
       {recommendations && (is_default?
         <>
           <MovieSection title="내가 본 영화와 비슷해요" movies={recommendations.predicted_movies} />
