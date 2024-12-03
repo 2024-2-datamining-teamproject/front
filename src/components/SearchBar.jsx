@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Styles.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Styles.css";
 
 const SearchBar = () => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    if (query.trim() !== '') {
-      navigate(`/search?query=${encodeURIComponent(query)}`);
+    if (query.trim() !== "") {
+      navigate(`/search`, { state: { query } });
     }
   };
 

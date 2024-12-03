@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
-import './Styles.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../api";
 
-const LoginPage = ({ onLogin }) => {
-  const [id, setId] = useState('');
+const LoginPage = ({ set_default }) => {
+  const [id, setId] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (id.trim()) {
-      onLogin(id);
+      const response = await loginUser(id);
+      if (response.existing_user) {
+        set_default(true);
+        navigate("/", { state: { recommendations: response } });
+      } else {
+        set_default(false);
+        navigate("/register", { state: { userId: id } });
+      }
     } else {
-      alert('ID를 입력해주세요!');
+      alert("ID를 입력해주세요!");
     }
   };
 

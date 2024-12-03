@@ -65,16 +65,37 @@
 
 
 .movie-card {
-  min-width: 200px; /* 카드 너비 */
-  height: 300px; /* 카드 높이 */
-  flex-shrink: 0; /* 크기 줄어들지 않음 */
-  background-color: #222;
-  color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 200px; /* 카드의 고정 너비 */
+  height: 400px; /* 카드의 고정 높이 */
+  position: relative; /* 자식 요소 위치 조정을 위한 기준 */
+  overflow: hidden; /* 카드 영역 밖으로 넘치는 요소 숨김 */
+  border-radius: 8px; /* 선택 사항: 카드 모서리를 둥글게 */
+  background-color: #222; /* 카드 배경색 */
 }
+
+.movie-card img {
+  width: 100%; /* 카드 너비를 채움 */
+  height: 100%; /* 카드 높이를 채움 */
+  object-fit: fill; /* 크기를 강제로 맞춤 */
+  background-color: #333; /* 이미지 로드 실패 시 배경색 */
+}
+
+
+.movie-card h4 {
+  position: absolute; /* 카드 내 절대 위치 */
+  bottom: 0; /* 카드의 아래쪽에 위치 */
+  left: 50%; /* 가로 중앙 기준 */
+  transform: translateX(-50%); /* 가로 중앙 정렬 */
+  width: 100%; /* 텍스트가 카드 너비를 차지 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  color: #fff; /* 텍스트 색상 */
+  font-size: 1rem; /* 텍스트 크기 */
+  background-color: rgba(0, 0, 0, 0.7); /* 반투명한 배경 추가 */
+  padding: 5px 0; /* 텍스트 상하 간격 */
+  box-sizing: border-box; /* 패딩이 크기에 영향을 주지 않도록 설정 */
+}
+
+
 
 .movie-card:hover {
   transform: translateY(-10px);

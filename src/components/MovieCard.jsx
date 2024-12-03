@@ -1,11 +1,16 @@
-import './Styles.css'
+import React from "react";
+import "./Styles.css";
 
-const MovieCard = ({ movie, index }) => {
-  return(
-    <div key={index} className="movie-card">
-            <img src={movie.thumbnail} alt={movie.title} />
-            <h4>{movie.title}</h4>
-          </div>
+const placeholder = "https://via.placeholder.com/200x300";
+
+const MovieCard = ({ movie }) => {
+  const posterUrl = movie.poster ? movie.poster : placeholder;
+
+  return (
+    <div className="movie-card">
+      <img src={posterUrl} alt={movie.title || "Placeholder"} />
+      <h4>{movie.title || "제목 없음"}</h4>
+    </div>
   );
 };
 

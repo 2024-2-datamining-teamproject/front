@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
-import './Styles.css';
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { registerUser } from "../api";
 
-const RegisterPage = ({ onSubmit }) => {
-  const [director, setDirector] = useState('');
-  const [movie, setMovie] = useState('');
+const RegisterPage = () => {
+  const [favoriteMovie, setFavoriteMovie] = useState("");
+  const [favoriteDirector, setFavoriteDirector] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const userId = location.state.userId;
 
-  const handleSubmit = () => {
-    if (director.trim() && movie.trim()) {
-      onSubmit({ director, movie });
+  const handleRegister = async () => {
+    if (favoriteMovie.trim() && favoriteDirector.trim()) {
+      const response = await registerUser(userId, favoriteMovie, favoriteDirector);
+      navigate("/", { state: { recommendations: response } });
     } else {
-      alert('모든 필드를 입력해주세요!');
+      alert("모든 필드를 입력해주세요!");
     }
   };
 
@@ -19,24 +24,24 @@ const RegisterPage = ({ onSubmit }) => {
       <h2>처음 오셨군요!</h2>
       <div className="register-form">
         <label>
-          좋아하는 감독:
-          <input
-            type="text"
-            placeholder="감독 이름을 입력하세요"
-            value={director}
-            onChange={(e) => setDirector(e.target.value)}
-          />
-        </label>
-        <label>
           좋아하는 영화:
           <input
             type="text"
             placeholder="영화 이름을 입력하세요"
-            value={movie}
-            onChange={(e) => setMovie(e.target.value)}
+            value={favoriteMovie}
+            onChange={(e) => setFavoriteMovie(e.target.value)}
           />
         </label>
-        <button onClick={handleSubmit}>계속하기</button>
+        <label>
+          좋아하는 감독:
+          <input
+            type="text"
+            placeholder="감독 이름을 입력하세요"
+            value={favoriteDirector}
+            onChange={(e) => setFavoriteDirector(e.target.value)}
+          />
+        </label>
+        <button onClick={handleRegister}>계속하기</button>
       </div>
     </div>
   );

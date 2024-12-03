@@ -1,34 +1,29 @@
-import React from 'react';
-import MovieSection from '../components/MovieSection';
-import Header from '../components/Header';
-import './Styles.css'
+import React from "react";
+import { useLocation } from "react-router-dom";
+import MovieSection from "../components/MovieSection";
+import Header from "../components/Header";
+import "./Styles.css";
 
-const movies = [
-  { title: 'Movie 1', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 2', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 3', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 4', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 5', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 6', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 7', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 8', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 9', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 10', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 11', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 12', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 13', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 14', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 15', thumbnail: 'https://via.placeholder.com/200x300' },
-  { title: 'Movie 16', thumbnail: 'https://via.placeholder.com/200x300' },
-];
+const MainPage = ({ is_default }) => {
+  const location = useLocation();
+  const recommendations = location.state?.recommendations;
 
-const MainPage = () => {
   return (
     <div className="main-page">
       <Header />
-      <MovieSection title='추천 콘텐츠' movies={movies}/>
-      <MovieSection title='날씨 추천 콘텐츠' movies={movies}/>
-      <MovieSection title='이런 영화 어때요?' movies={movies}/>
+      {recommendations && (is_default?
+        <>
+          <MovieSection title="내가 본 영화와 비슷해요" movies={recommendations.predicted_movies} />
+          <MovieSection title="나와 비슷한 사용자가 좋아해요" movies={recommendations.knn_movies} />
+          <MovieSection title="이런 날씨에 어떄요?" movies={recommendations.weather_movies} />
+        </>
+        :
+        <>
+        <MovieSection title="내가 좋아하는 영화와 비슷해요" movies={recommendations.similar_movies} />
+        <MovieSection title="내가 좋아하는 감독의 다른 영화" movies={recommendations.director_movies} />
+        <MovieSection title="이런 날씨에 어떄요?" movies={recommendations.weather_movies} />
+        </>
+      )}
     </div>
   );
 };
